@@ -10,13 +10,13 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql
+      - db-data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - db_network
+      - moheng-network
 
 volumes:
-  db_data:
+  db-data:
     driver: local
     driver_opts:
       type: bind
@@ -24,5 +24,7 @@ volumes:
       o: bind
 
 networks:
-  db_network:
+  moheng-network:
+    name: moheng-network
     driver: bridge
+    # 네트워크 이름을 명시하지 않으면 디렉토리 접두사가 붙어서 생성됨
